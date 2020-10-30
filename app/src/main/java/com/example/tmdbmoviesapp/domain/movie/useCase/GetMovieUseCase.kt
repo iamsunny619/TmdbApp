@@ -5,5 +5,5 @@ import com.example.tmdbmoviesapp.domain.movie.repository.MovieRepository
 
 class GetMovieUseCase(private val movieRepository: MovieRepository) {
 
-    suspend fun excecute(): List<Movie>? = movieRepository.getMovies()
+    suspend fun execute(): List<Movie>? = movieRepository.getMovies()
 }

@@ -1,4 +1,4 @@
-package com.example.tmdbmoviesapp.data.repository.movie.datasourceimpl
+package com.example.tmdbmoviesapp.data.repository.movie
 
 import android.util.Log
 import com.example.tmdbmoviesapp.data.model.movie.Movie
@@ -20,7 +20,7 @@ class MovieRepositoryImpl(
         val newListOfMovies = getMoviesFromApi()
         movieLocalDataSource.clearAll()
         movieLocalDataSource.saveMoviesToDB(newListOfMovies!!)
-        movieCacheDataSource.saveMoviesToCache(newListOfMovies)
+        movieCacheDataSource.saveMoviesToCache(newListOfMovies)//can be neglected
         return newListOfMovies
     }
 
@@ -42,7 +42,7 @@ class MovieRepositoryImpl(
     suspend fun getMoviesFromDB(): List<Movie>? {
         var movieList: List<Movie>? = null
         try {
-            val response = movieLocalDataSource.getMoviesFromDB()
+             movieList = movieLocalDataSource.getMoviesFromDB()
         } catch (execption: Exception) {
             Log.i("MYTAG", execption.toString())
         }
@@ -58,7 +58,7 @@ class MovieRepositoryImpl(
     suspend fun getMoviesFromCache(): List<Movie> {
         var movieList: List<Movie>? = null
         try {
-            val response = movieCacheDataSource.getMoviesFromCache()
+            movieList = movieCacheDataSource.getMoviesFromCache()
         } catch (execption: Exception) {
             Log.i("MYTAG", execption.toString())
         }
